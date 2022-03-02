@@ -1,7 +1,7 @@
 import argparse
 import sys
 from pathlib import Path
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, Union
 
 current_path = Path(__file__).parent.parent.parent.resolve()
 sys.path.append(str(current_path))
@@ -12,20 +12,21 @@ class ArgumentParser(argparse.ArgumentParser):
     BODY_ARG_MARK = "="
     QUERY_MARK = "=="
 
-    def __init__(self, args: List[str]) -> None:
+    def __init__(self) -> None:
         super().__init__()
         self._headers: Dict[str, Any] = dict()
         self._query_arguments: Dict[str, Any] = dict()
         self._body: Dict[str, Any] = dict()
 
         self.description = """Simple HTTP Cli tool for API. JSON requests,
-        downloads, functionality,variables and colorized responses"""
+        downloads, functionality, variables and colorized responses"""
         self.prog = "httpcli"
 
-        self.add_argument("-v", "--version", action="version", version="%(prog)s 0.0.1")
+        self.add_argument("URL")
         self.add_argument(
             "method", default="GET", nargs="?", choices=["GET", "POST", "PUT", "DELETE"]
         )
+        self.add_argument("-v", "--version", action="version", version="%(prog)s 0.0.1")
         self.add_argument(
             "-H", "--header", action="store_true", help="show response header only"
         )
@@ -35,6 +36,7 @@ class ArgumentParser(argparse.ArgumentParser):
         self.add_argument(
             "-S", "--status", action="store_true", help="show response status only"
         )
+        self.add_argument("-x", "--exec", metavar="CMD", help="execute httpcli command")
         self.add_argument(
             "-V",
             "--verbose",
@@ -48,11 +50,11 @@ class ArgumentParser(argparse.ArgumentParser):
             help="allow requests to be redirected",
         )
 
-        self.args = self.parse_args()
+        self.args, self.extra_args = self.parse_known_args()
 
     @property
     def headers(self) -> Union[Dict[str, Any], None]:
-        for arg in self.args:
+        for arg in self.extra_args:
             if ArgumentParser.HEADER_MARK in arg:
                 val = arg.split(ArgumentParser.HEADER_MARK)
                 self._headers[val[0]] = val[1]
@@ -61,8 +63,8 @@ class ArgumentParser(argparse.ArgumentParser):
         return None
 
     @property
-    def body(self) -> Dict[str, Any]:
-        for arg in self.args:
+    def body(self) -> Union[Dict[str, Any], None]:
+        for arg in self.extra_args:
             if (
                 ArgumentParser.BODY_ARG_MARK in arg
                 and ArgumentParser.QUERY_MARK not in arg
@@ -74,8 +76,8 @@ class ArgumentParser(argparse.ArgumentParser):
         return None
 
     @property
-    def query_arguments(self) -> Dict[str, Any]:
-        for arg in self.args:
+    def query_arguments(self) -> Union[Dict[str, Any], None]:
+        for arg in self.extra_args:
             if ArgumentParser.QUERY_MARK in arg:
                 val = arg.split(ArgumentParser.QUERY_MARK)
                 self._query_arguments[val[0]] = val[1]
@@ -83,5 +85,12 @@ class ArgumentParser(argparse.ArgumentParser):
             return self._query_arguments
         return None
 
+    @property
+    def method(self) -> Dict[str, Any]:
+        return self.configs.method
 
-print(ArgumentParser(sys.argv[1:]).args)
+    @property
+    def command(self) -> Union[str, None]:
+        if self.args.exec:
+            return self.args.exec
+        return None
