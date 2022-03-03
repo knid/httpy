@@ -1,10 +1,5 @@
 import argparse
-import sys
-from pathlib import Path
 from typing import Any, Dict, Union
-
-current_path = Path(__file__).parent.parent.parent.resolve()
-sys.path.append(str(current_path))
 
 
 class ArgumentParser(argparse.ArgumentParser):
