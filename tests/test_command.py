@@ -6,9 +6,9 @@ import pytest
 current_path = Path(__file__).parent.parent.parent.resolve()
 sys.path.append(str(current_path))
 
-from httpy.core.command import CommandHandler  # noqa: E402
-from httpy.core.operation import Operation  # noqa: E402
-from httpy.core.request import Request  # noqa: E402
+from httpy.command.handler import CommandHandler  # noqa: E402
+from httpy.command.operation import Operation  # noqa: E402
+from httpy.request import Request  # noqa: E402
 
 
 @pytest.fixture

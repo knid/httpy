@@ -4,6 +4,8 @@ from urllib.parse import urlencode
 from urllib3 import PoolManager
 from urllib3.response import HTTPResponse
 
+from .arguments import ArgumentParser
+
 
 class Request(PoolManager):
     def __init__(
@@ -14,11 +16,19 @@ class Request(PoolManager):
         body: Union[Dict[str, Any], None] = None,
         queris: Union[Dict[str, Any], None] = None,
     ) -> None:
+
+        super().__init__()
+
         self.method = method
         self.url = url
         self.header = header
         self.body = body
         self.queries = queris
+
+    @classmethod
+    def from_args(cls, args: ArgumentParser):
+        req = cls(args.method, args.url, args.headers, args.body, args.query_arguments)
+        return req
 
     def make_request(self) -> HTTPResponse:
         if self.method == "GET" or self.method == "DELETE":

@@ -1,10 +1,20 @@
-# import requests
-# from typing import List
+import sys
+from pathlib import Path
 
-# from core.arguments import Arguments
+current_path = Path(__file__).parent.parent.parent.resolve()
+sys.path.append(str(current_path))
 
 
-# class HTTPCli():
-#     def __init__(self, args: List[str]) -> None:
-#         self.args = Arguments(args)
-#         self.method = self.args.method
+def main():
+    try:
+        from httpy.core import main
+
+        main()
+    except KeyboardInterrupt:
+        print(0)
+    finally:
+        sys.exit(0)
+
+
+if __name__ == "__main__":
+    main()

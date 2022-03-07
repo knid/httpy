@@ -7,7 +7,7 @@ import pytest
 current_path = Path(__file__).parent.parent.parent.resolve()
 sys.path.append(str(current_path))
 
-from httpy.core.arguments import ArgumentParser  # noqa: E402
+from httpy.arguments import ArgumentParser  # noqa: E402
 
 
 # This test will not work if you do not do the following.

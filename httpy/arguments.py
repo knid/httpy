@@ -15,12 +15,12 @@ class ArgumentParser(argparse.ArgumentParser):
 
         self.description = """Simple HTTP Cli tool for API. JSON requests,
         downloads, functionality, variables and colorized responses"""
-        self.prog = "httpcli"
+        self.prog = "httpy"
 
         self.add_argument("URL")
-        self.add_argument(
-            "method", default="GET", nargs="?", choices=["GET", "POST", "PUT", "DELETE"]
-        )
+        # self.add_argument(
+        #     "method", default="GET", nargs="?", choices=["GET", "POST", "PUT", "DELETE"]
+        # )
         self.add_argument("-v", "--version", action="version", version="%(prog)s 0.0.1")
         self.add_argument(
             "-H", "--header", action="store_true", help="show response header only"
@@ -45,7 +45,11 @@ class ArgumentParser(argparse.ArgumentParser):
             help="allow requests to be redirected",
         )
 
-        self.args, self.extra_args = self.parse_known_args()
+        self.args, self.extra_args = self.parse_known_intermixed_args()
+
+    @property
+    def url(self):
+        return self.args.URL
 
     @property
     def headers(self) -> Union[Dict[str, Any], None]:
@@ -82,7 +86,12 @@ class ArgumentParser(argparse.ArgumentParser):
 
     @property
     def method(self) -> Dict[str, Any]:
-        return self.configs.method
+        methods = ["get", "post", "put", "delete"]
+        for arg in self.extra_args:
+            for method in methods:
+                if arg.lower() == method:
+                    return method.upper()
+        return methods[0]
 
     @property
     def command(self) -> Union[str, None]:
