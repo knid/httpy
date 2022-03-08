@@ -1,20 +1,20 @@
 import sys
 from pathlib import Path
 
-current_path = Path(__file__).parent.parent.parent.resolve()
-sys.path.append(str(current_path))
-
 
 def main():
+    current_path = Path(__file__).parent.parent.resolve()
+    sys.path.append(str(current_path))
     try:
         from httpy.core import main
 
-        main()
+        exit_status = main()
     except KeyboardInterrupt:
-        print(0)
-    finally:
-        sys.exit(0)
+        from httpy.status import ExitStatus
+
+        exit_status = ExitStatus.KEYBOARD_INTERRUPT
+    return exit_status.value
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

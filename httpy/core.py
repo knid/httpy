@@ -1,15 +1,13 @@
-def main():
+from httpy.arguments import ArgumentParser
+from httpy.command.handler import CommandHandler  # noqa: F401
+from httpy.request import Request
+from httpy.status import ExitStatus
 
-    from httpy.arguments import ArgumentParser
-    from httpy.command.handler import CommandHandler  # noqa: F401
-    from httpy.request import Request
 
+def main() -> ExitStatus:
     args = ArgumentParser()
-
-    req: Request = Request.from_args(args)
+    req = Request.from_args(args)
 
     if not args.command:
-        print(req.make_request().status)
-
-
-main()
+        res = req.make_request()  # noqa: F841
+        return ExitStatus.SUCCESS
