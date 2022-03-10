@@ -2,6 +2,7 @@ import requests
 
 from httpy.arguments import ArgumentParser
 from httpy.command.handler import CommandHandler  # noqa: F401
+from httpy.command.operation import Operation
 from httpy.output.error import print_error
 from httpy.output.writer import write
 from httpy.request import Request
@@ -22,3 +23,11 @@ def main() -> ExitStatus:
             return ExitStatus.ERROR
         write(args, res)
         return ExitStatus.SUCCESS
+
+    command_handler = CommandHandler(req, args.command)
+
+    if command_handler.operation is Operation.INCREMENT:
+        for _ in range(1, command_handler.max_run + 1):
+            print(_)
+
+    return ExitStatus.SUCCESS

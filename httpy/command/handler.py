@@ -19,7 +19,7 @@ class CommandHandler:
         self.operation = self.__find_operation(self.command[1])
         self.value = self.__find_value(self.command[1])
         self.positions = self.__find_variable_positions()
-        self.max_run = self.command[2] if len(self.command) > 2 else 1
+        self.max_run = int(self.command[2]) if len(self.command) > 2 else 1
 
     def __find_operation(self, raw_cmd) -> Enum:
         ops = {
@@ -46,13 +46,24 @@ class CommandHandler:
     def __find_variable_positions(self) -> Dict[str, Iterator]:
         t = "{" + self.variable + "}"
         r = r"[{]" + self.variable + r"[}]"
+
         pos = dict()
-        if t in self.request.url:
-            pos["url"] = re.finditer(r, self.request.url)
-        if self.request.body is not None and t in self.request.body:
-            pos["body"] = re.finditer(r, self.request.body)
-        if self.request.header is not None and t in self.request.header:
-            pos["header"] = re.finditer(r, self.request.header)
-        if self.request.queries is not None and t in self.request.queries:
-            pos["queries"] = re.finditer(r, self.request.queries)
+        pos["url"] = list()
+        pos["headers"] = list()
+        pos["body"] = list()
+        pos["queries"] = list()
+
+        get_span = lambda g: [i.span() for i in re.finditer(r, g)]  # noqa: E731
+        add_position = (
+            lambda k, v: [
+                pos[k].append({i: get_span(v[i])}) for i in v if t in v.values()
+            ]
+            if v
+            else 0
+        )
+
+        pos["url"].append(get_span(self.request.url))
+        add_position("headers", self.request.header)
+        add_position("body", self.request.body)
+        add_position("queries", self.request.queries)
         return pos
