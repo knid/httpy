@@ -13,6 +13,7 @@ def main():
         from httpy.status import ExitStatus
 
         exit_status = ExitStatus.KEYBOARD_INTERRUPT
+    print()
     return exit_status.value
 
 

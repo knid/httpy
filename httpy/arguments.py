@@ -98,3 +98,27 @@ class ArgumentParser(argparse.ArgumentParser):
         if self.args.exec:
             return self.args.exec
         return None
+
+    @property
+    def redirect(self) -> bool:
+        return self.args.allow_redirect
+
+    @property
+    def show_status(self) -> bool:
+        return self.args.status
+
+    @property
+    def show_header(self) -> bool:
+        return bool(self.args.header)
+
+    @property
+    def show_body(self) -> bool:
+        return bool(self.args.body)
+
+    @property
+    def verbose(self) -> bool:
+        return bool(self.args.verbose)
+
+    @property
+    def filter(self) -> bool:
+        return self.show_status or self.show_header or self.show_body

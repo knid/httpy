@@ -1,13 +1,11 @@
 from typing import Any, Dict, Union
-from urllib.parse import urlencode
 
-from urllib3 import PoolManager
-from urllib3.response import HTTPResponse
+import requests
 
 from .arguments import ArgumentParser
 
 
-class Request(PoolManager):
+class Request:
     def __init__(
         self,
         method: str,
@@ -15,35 +13,38 @@ class Request(PoolManager):
         header: Union[Dict[str, Any], None] = None,
         body: Union[Dict[str, Any], None] = None,
         queris: Union[Dict[str, Any], None] = None,
+        redirect: bool = False,
     ) -> None:
 
-        super().__init__()
-
         self.method = method
-        self.url = url
+        self.url = self.__fix_url(url)
         self.header = header
         self.body = body
         self.queries = queris
+        self.redirect = redirect
 
     @classmethod
     def from_args(cls, args: ArgumentParser):
-        req = cls(args.method, args.url, args.headers, args.body, args.query_arguments)
+        req = cls(
+            args.method,
+            args.url,
+            args.headers,
+            args.body,
+            args.query_arguments,
+            args.redirect,
+        )
         return req
 
-    def make_request(self) -> HTTPResponse:
-        if self.method == "GET" or self.method == "DELETE":
-            return self.__get_delete_requests()
-        return self.__post_put_requests()
+    def make_request(self) -> requests.Response:
+        session = requests.Session()
+        req = requests.Request(
+            self.method, self.url, self.header, data=self.body, params=self.queries
+        )
+        prepped = req.prepare()
+        response = session.send(prepped, allow_redirects=self.redirect)
+        return response
 
-    def __get_delete_requests(self) -> HTTPResponse:
-        return self.request(self.method, self.url, self.queries, self.header)
-
-    def __post_put_requests(self) -> HTTPResponse:
-        if self.queries:
-            return self.request(
-                self.method,
-                f"{self.url}?{urlencode(self.queries)}",
-                self.body,
-                self.header,
-            )
-        return self.request(self.method, self.url, self.body, self.header)
+    def __fix_url(self, url: str) -> str:
+        if not url.startswith("http://") and not url.startswith("https://"):
+            return "http://" + url
+        return url
