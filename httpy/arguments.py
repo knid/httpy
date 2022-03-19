@@ -18,9 +18,6 @@ class ArgumentParser(argparse.ArgumentParser):
         self.prog = "httpy"
 
         self.add_argument("URL")
-        # self.add_argument(
-        #     "method", default="GET", nargs="?", choices=["GET", "POST", "PUT", "DELETE"]
-        # )
         self.add_argument("-v", "--version", action="version", version="%(prog)s 0.0.1")
         self.add_argument(
             "-H", "--header", action="store_true", help="show response header only"

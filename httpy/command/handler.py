@@ -1,11 +1,10 @@
 import re
 from enum import Enum
-from typing import Dict, Iterator, List, Union
+from typing import List, Union
 
+from httpy.command.operation import Operation
+from httpy.command.regexs import CommandRegexs
 from httpy.request import Request
-
-from .operation import Operation
-from .regexs import CommandRegexs
 
 
 class CommandHandler:
@@ -18,8 +17,59 @@ class CommandHandler:
         self.variable = self.command[0]
         self.operation = self.__find_operation(self.command[1])
         self.value = self.__find_value(self.command[1])
-        self.positions = self.__find_variable_positions()
         self.max_run = int(self.command[2]) if len(self.command) > 2 else 1
+
+    def build_requests(self) -> List[Request]:
+        if self.operation is Operation.INCREMENT:
+            for run in range(self.max_run):
+                yield self._build_request(run)
+        elif self.operation is Operation.DEINCREMENT:
+            value = 0
+            for run in range(self.max_run):
+                yield self._build_request(value)
+                value -= 1
+        elif self.operation is Operation.LIST:
+            pass
+
+        elif self.operation is Operation.TEXT:
+            pass
+
+        elif self.operation is Operation.RAND:
+            pass
+
+        elif self.operation is Operation.READ:
+            pass
+
+    def _build_item(self, item: str, value: str) -> str:
+        variable = "{" + self.variable + "}"
+        r = r"[{]" + self.variable + r"[}]"
+
+        list_item = list(item)
+        counter = 0
+        for match in re.finditer(r, item):
+            diff = (len(variable) - len(str(value))) * counter
+            span = match.span()
+            list_item[span[0] - diff : span[1] - diff] = str(value)  # noqa: E203
+            counter += 1
+
+        return "".join(list_item)
+
+    def _build_iterable_item(self, item: dict, value: str) -> dict:
+        val = dict()
+        if item is not None:
+            for k, v in item.items():
+                item[k] = self._build_item(v, value)
+        return val
+
+    def _build_request(self, value: str) -> Request:
+        return Request(
+            self.request.method,
+            self._build_item(self.request.url, value),
+            self._build_iterable_item(self.request.header, value),
+            self._build_iterable_item(self.request.body, value),
+            self._build_iterable_item(self.request.queries, value),
+            self.request.redirect,
+        )
 
     def __find_operation(self, raw_cmd) -> Enum:
         ops = {
@@ -42,28 +92,3 @@ class CommandHandler:
         elif self.operation == Operation.LIST:
             return raw_cmd.split(",")
         return None
-
-    def __find_variable_positions(self) -> Dict[str, Iterator]:
-        t = "{" + self.variable + "}"
-        r = r"[{]" + self.variable + r"[}]"
-
-        pos = dict()
-        pos["url"] = list()
-        pos["headers"] = list()
-        pos["body"] = list()
-        pos["queries"] = list()
-
-        get_span = lambda g: [i.span() for i in re.finditer(r, g)]  # noqa: E731
-        add_position = (
-            lambda k, v: [
-                pos[k].append({i: get_span(v[i])}) for i in v if t in v.values()
-            ]
-            if v
-            else 0
-        )
-
-        pos["url"].append(get_span(self.request.url))
-        add_position("headers", self.request.header)
-        add_position("body", self.request.body)
-        add_position("queries", self.request.queries)
-        return pos

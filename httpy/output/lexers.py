@@ -17,6 +17,6 @@ def print_html(res: requests.Response):
 def print_json(res: requests.Response):
     for json in res.iter_lines():
         decoded = json.decode(ENCODING)
-        highlighted_html = highlight(decoded, JsonLexer(), TerminalFormatter())
-        print(highlighted_html, end="")
+        highlighted_json = highlight(decoded, JsonLexer(), TerminalFormatter())
+        print(highlighted_json, end="")
     print()

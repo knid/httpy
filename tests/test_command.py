@@ -19,35 +19,35 @@ def req():
 
 def test_find_command_increment(req):
 
-    cmd = CommandHandler(req, "i:++").operation
-    assert cmd == Operation.INCREMENT
+    cmd = CommandHandler(req, "i:++")
+    assert cmd.operation == Operation.INCREMENT
 
 
 def test_find_command_deincrement(req):
 
-    cmd = CommandHandler(req, "i:--:15").operation
-    assert cmd == Operation.DEINCREMENT
+    cmd = CommandHandler(req, "i:--:15")
+    assert cmd.operation == Operation.DEINCREMENT
 
 
 def test_find_command_rand(req):
 
-    cmd = CommandHandler(req, "i:rand(1,5):13").operation
-    assert cmd == Operation.RAND
+    cmd = CommandHandler(req, "i:rand(1,5):13")
+    assert cmd.operation == Operation.RAND
 
 
 def test_find_command_read(req):
 
-    cmd = CommandHandler(req, "i:read(paTh/tO/fiLe):15").operation
-    assert cmd == Operation.READ
+    cmd = CommandHandler(req, "i:read(paTh/tO/fiLe):15")
+    assert cmd.operation == Operation.READ
 
 
 def test_find_command_list(req):
 
-    cmd = CommandHandler(req, "i:john,13,mikey:12").operation
-    assert cmd == Operation.LIST
+    cmd = CommandHandler(req, "i:john,13,mikey:12")
+    assert cmd.operation == Operation.LIST
 
 
 def test_find_command_text(req):
 
-    cmd = CommandHandler(req, "i:fas(/!'^)DfasdbkfjeA/(!'^:11").operation
-    assert cmd == Operation.TEXT
+    cmd = CommandHandler(req, "i:fas(/!'^)DfasdbkfjeA/(!'^:11")
+    assert cmd.operation == Operation.TEXT

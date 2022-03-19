@@ -1,8 +1,7 @@
 import requests
 
 from httpy.arguments import ArgumentParser
-from httpy.command.handler import CommandHandler  # noqa: F401
-from httpy.command.operation import Operation
+from httpy.command.handler import CommandHandler
 from httpy.output.error import print_error
 from httpy.output.writer import write
 from httpy.request import Request
@@ -17,7 +16,7 @@ def main() -> ExitStatus:
 
     if not args.command:
         try:
-            res = req.make_request()  # noqa: F841
+            res = req.make_request()
         except requests.exceptions.InvalidURL:
             print_error("Invalid URL: ", req.url)
             return ExitStatus.ERROR
@@ -25,9 +24,13 @@ def main() -> ExitStatus:
         return ExitStatus.SUCCESS
 
     command_handler = CommandHandler(req, args.command)
+    reqs = command_handler.build_requests()
 
-    if command_handler.operation is Operation.INCREMENT:
-        for _ in range(1, command_handler.max_run + 1):
-            print(_)
-
+    for request in reqs:
+        try:
+            res = request.make_request()
+        except requests.exceptions.InvalidURL:
+            print_error("Invalid URL: ", req.url)
+            return ExitStatus.ERROR
+        write(args, res)
     return ExitStatus.SUCCESS
