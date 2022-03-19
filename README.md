@@ -4,4 +4,4 @@
 </a>
 <br/>
 
-# httpy: Modern, user-friendly, programmable command-line HTTP client for the API.
+# httpy: Programmable CLI HTTP client for the API.
