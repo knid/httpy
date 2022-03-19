@@ -7,8 +7,8 @@ from httpy.output.lexers import print_html, print_json
 def print_status(res: requests.Response):
     res.request.method
     print(
-        f"{Colors.RED}{Colors.BOLD}{res.request.method} HTTP/1.1\
-            {Colors.ENDC}{Colors.CYAN} {res.status_code} {res.reason}"
+        f"{Colors.RED}{Colors.BOLD}{res.request.method} HTTP/1.1"
+        f"{Colors.ENDC}{Colors.CYAN} {res.status_code} {res.reason}"
     )
 
 
