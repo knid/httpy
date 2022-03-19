@@ -24,7 +24,7 @@ def main() -> ExitStatus:
         return ExitStatus.SUCCESS
 
     command_handler = CommandHandler(req, args.command)
-    reqs = command_handler.build_requests()
+    reqs = command_handler.builder.build_requests()
 
     for request in reqs:
         try:
