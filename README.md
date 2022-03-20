@@ -19,4 +19,4 @@ For example, you can extract data for user IDs 0, 1, and 2 at the same time
 [![Latest version](https://img.shields.io/pypi/v/httpy.svg?style=flat&label=Latest&color=%234B78E6&logo=&logoColor=white)](https://pypi.python.org/pypi/httpy)
 [![Twitter](https://img.shields.io/twitter/follow/KanidagliV?style=flat&color=%234B78E6&logoColor=%234B78E6)](https://twitter.com/KanidagliV)
 
-<img src="https://raw.githubusercontent.com/httpy/httpy/main/docs/httpy-animation.gif" alt="httpy in action" width="100%"/>
+<img src="https://raw.githubusercontent.com/SinanKanidagli/httpy/main/docs/httpy-animation.gif" alt="httpy in action" width="100%"/>
