@@ -20,3 +20,68 @@ For example, you can extract data for user IDs 0, 1, and 2 at the same time
 [![Twitter](https://img.shields.io/twitter/follow/KanidagliV?style=flat&color=%234B78E6&logoColor=%234B78E6)](https://twitter.com/KanidagliV)
 
 <img src="https://raw.githubusercontent.com/SinanKanidagli/httpy/main/docs/httpy-animation.gif" alt="httpy in action" width="100%"/>
+
+## Getting started
+
+Installation instructions
+
+Please make sure you have Python 3 or newer (python --version).
+
+```bash
+pip install httpy
+```
+
+
+## Features
+
+- Expressive and intuitive syntax
+- Formatted and colorized terminal output
+- Programmable requests
+    - Multiple requests one line
+    - Value incremented each time
+    - Random number per request
+    - Read each value from the lines in the file
+    - Value per each request as a list of multiple values
+- Built-in JSON support
+- Arbitrary request data
+- Custom headers
+
+## Structure
+
+```bash
+$ httpy <URL> <METHOD> <HEADERS,QUERIES,DATA> --exec <COMMAND>
+```
+## Examples
+
+Hello World:
+
+```bash
+$ httpy https://postman-echo.com/post POST
+```
+
+Custom HTTP method, HTTP headers and JSON data:
+
+```bash
+$ httpy httpbin.org/put PUT X-API-Token:123 name=John
+```
+
+Pass a value to URL:
+
+```bash
+$ httpy 'httpbin.org/get?value={i}' --exec i:VALUE
+```
+
+## Community & support
+
+
+- Tweet httpy at [@KanidagliV](https://twitter.com/KanidagliV) on Twitter.
+- Use [StackOverflow](https://stackoverflow.com/questions/tagged/httpy) to ask questions and include a `httpy` tag.
+- Create [GitHub Issues](https://github.com/SinanKanidagil/httpy/issues) for bug reports and feature requests.
+
+
+## Contributing
+
+Have a look through existing [Issues](https://github.com/SinanKanidagli/httpy/issues) and [Pull Requests](https://github.com/SinanKanidagli/httpy/pulls) that you could help with. If you'd like to request a feature or report a bug, please [create a GitHub Issue](https://github.com/SinanKanidagli/httpy/issues) using one of the templates provided.
+
+
+Sinan Kanidağlı © 2022
