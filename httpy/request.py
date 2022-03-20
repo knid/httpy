@@ -12,7 +12,7 @@ class Request:
         url: str,
         header: Union[Dict[str, Any], None] = None,
         body: Union[Dict[str, Any], None] = None,
-        queris: Union[Dict[str, Any], None] = None,
+        queries: Union[Dict[str, Any], None] = None,
         redirect: bool = False,
     ) -> None:
 
@@ -20,7 +20,7 @@ class Request:
         self.url = self.__fix_url(url)
         self.header = header
         self.body = body
-        self.queries = queris
+        self.queries = queries
         self.redirect = redirect
 
     @classmethod
@@ -38,7 +38,7 @@ class Request:
     def make_request(self) -> requests.Response:
         session = requests.Session()
         req = requests.Request(
-            self.method, self.url, self.header, data=self.body, params=self.queries
+            self.method, self.url, self.header, json=self.body, params=self.queries
         )
         prepped = req.prepare()
         response = session.send(prepped, allow_redirects=self.redirect)

@@ -68,7 +68,7 @@ class RequestBuilder:
         val = dict()
         if item is not None:
             for k, v in item.items():
-                item[k] = self._build_item(v, value)
+                val[k] = self._build_item(v, value)
         return val
 
     def _build_request(self, value: str) -> Request:

@@ -14,7 +14,6 @@ class CommandHandler:
     def __init__(self, request: Request, command: str) -> None:
         self.request = request
         self.raw_command = command
-        print(command)
         self.command = command.split(CommandHandler._SEPARATOR)
         self.variable = self.command[0]
         self.operation = self.__find_operation(self.command[1])
