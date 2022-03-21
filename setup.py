@@ -30,7 +30,7 @@ def long_description():
 
 
 setup(
-    name="httpy",
+    name="httpy-cli",
     version=httpy.__version__,
     description="Modern, user-friendly, programmable command-line HTTP client for the API.",
     long_description=long_description(),
@@ -44,6 +44,7 @@ setup(
             "httpy = httpy.__main__:main",
         ],
     },
+    download_url="https://github.com/SinanKanidagli/httpy/archive/refs/tags/httpy-0.0.1.tar.gz",
     python_requires=">=3.7",
     extras_require=extras_require,
     install_requires=install_requires,

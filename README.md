@@ -27,7 +27,7 @@ Installation instructions
 Please make sure you have Python 3 or newer (python --version).
 
 ```bash
-pip install httpy
+pip install httpy-cli
 ```
 
 ## Features
