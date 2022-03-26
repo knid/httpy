@@ -1,4 +1,5 @@
 <div align="center">
+    
 <br/>
 <a href="" target="blank_">
     <img height="100" alt="httpy" src="https://raw.githubusercontent.com/SinanKanidagli/httpy/main/docs/httpy-logo.svg" />
@@ -20,7 +21,9 @@ For example, you can pull data for user IDs 0, 1, and 2 at the same time
 [![Twitter](https://img.shields.io/twitter/follow/KanidagliV?style=flat&color=%234B78E6&logoColor=%234B78E6)](https://twitter.com/KanidagliV)
 
 <img src="https://raw.githubusercontent.com/SinanKanidagli/httpy/main/docs/httpy-animation.gif" alt="httpy in action" width="100%"/>
+    
 </div>
+
 
 ## Getting started
 
