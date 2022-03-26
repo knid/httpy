@@ -24,7 +24,6 @@ For example, you can pull data for user IDs 0, 1, and 2 at the same time
 
 Installation instructions
 
-Please make sure you have Python 3 or newer (python --version).
 
 ```bash
 pip install httpy-cli
