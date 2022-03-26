@@ -93,7 +93,7 @@ $ httpy httpbin.org/post POST X-API-Token:123 name=John
 Run 3 times:
 
 ```bash
-$ httpy 'httpbin.org/get' --exec i:++:3
+$ httpy httpbin.org/get --exec i:++:3
 ```
 
 Pass a value to URL:
