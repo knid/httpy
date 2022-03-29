@@ -1,6 +1,8 @@
 import argparse
 from typing import Any, Dict, Union
 
+import httpy
+
 
 class ArgumentParser(argparse.ArgumentParser):
     HEADER_MARK = ":"
@@ -18,7 +20,9 @@ class ArgumentParser(argparse.ArgumentParser):
         self.prog = "httpy"
 
         self.add_argument("URL")
-        self.add_argument("-v", "--version", action="version", version="%(prog)s 0.0.1")
+        self.add_argument(
+            "-v", "--version", action="version", version="%(prog)s " + httpy.__version__
+        )
         self.add_argument(
             "-H", "--header", action="store_true", help="show response header only"
         )
