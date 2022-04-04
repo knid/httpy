@@ -1,5 +1,6 @@
+import os
+
 import requests
-from colorama import init
 
 from httpy.arguments import ArgumentParser
 from httpy.command.handler import CommandHandler
@@ -15,7 +16,8 @@ def main() -> ExitStatus:
 
     print()
 
-    init(autoreset=True)  # init coloroma
+    if os.name == "nt":
+        __import__("colorama").init()  # init colorama
 
     if not args.command:
         try:

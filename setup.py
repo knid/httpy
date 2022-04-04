@@ -1,3 +1,5 @@
+import sys
+
 from setuptools import find_packages, setup
 
 import httpy
@@ -18,9 +20,21 @@ install_requires = [
     "setuptools",
 ]
 
+install_requires_win_only = [
+    "colorama>=0.4.4",
+]
+
+if "bdist_wheel" not in sys.argv:
+
+    if "win32" in str(sys.platform).lower():
+        # Terminal colors for Windows
+        install_requires.extend(install_requires_win_only)
+
 extras_require = {
     "dev": dev_require,
     "test": tests_require,
+    # https://wheel.readthedocs.io/en/latest/#defining-conditional-dependencies
+    ':sys_platform == "win32"': install_requires_win_only,
 }
 
 
