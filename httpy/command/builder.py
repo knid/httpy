@@ -3,7 +3,7 @@ from random import randint
 from typing import List
 
 from httpy.command.operation import Operation
-from httpy.output.error import print_error
+from httpy.output.error import write_error
 from httpy.request import Request
 
 
@@ -48,7 +48,7 @@ class RequestBuilder:
                     for line in lines:
                         yield self._build_request(line.strip())
             except FileNotFoundError as e:
-                print_error("File Not Found: ", f"'{e.filename}'")
+                write_error("File Not Found: ", f"'{e.filename}'")
 
     def _build_item(self, item: str, value: str) -> str:
         variable = "{" + self.handler.variable + "}"
