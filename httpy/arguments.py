@@ -11,9 +11,9 @@ class ArgumentParser(argparse.ArgumentParser):
 
     def __init__(self) -> None:
         super().__init__()
-        self._headers: Dict[str, Any] = dict()
-        self._query_arguments: Dict[str, Any] = dict()
-        self._body: Dict[str, Any] = dict()
+        self._headers: Dict[str, Any] = {}
+        self._query_arguments: Dict[str, Any] = {}
+        self._body: Dict[str, Any] = {}
 
         self.description = """Simple HTTP Cli tool for API. JSON requests,
         downloads, functionality, variables and colorized responses"""

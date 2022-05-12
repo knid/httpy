@@ -65,7 +65,7 @@ class RequestBuilder:
         return "".join(list_item)
 
     def _build_iterable_item(self, item: dict, value: str) -> dict:
-        val = dict()
+        val = {}
         if item is not None:
             for k, v in item.items():
                 val[k] = self._build_item(v, value)
