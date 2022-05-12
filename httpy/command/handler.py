@@ -31,7 +31,7 @@ class CommandHandler:
             CommandRegexs.LIST: Operation.LIST,
             CommandRegexs.TEXT: Operation.TEXT,
         }
-        for op in ops.keys():
+        for op in ops:
             if re.search(op, raw_cmd):
                 return ops[op]
 
