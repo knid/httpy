@@ -14,15 +14,13 @@ def main() -> ExitStatus:
     args = ArgumentParser()
     req = Request.from_args(args)  # Create request object from arguments
 
-    print()
 
     if os.name == "nt":
         __import__("colorama").init()  # init colorama
-
     if not args.command:
         try:
             res = req.make_request()
-        except requests.exceptions.InvalidURL:
+        except (requests.exceptions.InvalidURL, requests.exceptions.ConnectionError):
             write_error("Invalid URL: ", req.url)
             return ExitStatus.ERROR
         write(args, res)
@@ -34,7 +32,7 @@ def main() -> ExitStatus:
     for request in reqs:
         try:
             res = request.make_request()
-        except requests.exceptions.InvalidURL:
+        except (requests.exceptions.InvalidURL, requests.exceptions.ConnectionError):
             write_error("Invalid URL: ", req.url)
             return ExitStatus.ERROR
         write(args, res)

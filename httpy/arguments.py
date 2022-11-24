@@ -87,7 +87,7 @@ class ArgumentParser(argparse.ArgumentParser):
 
     @property
     def method(self) -> Dict[str, Any]:
-        methods = ["get", "post", "put", "delete"]
+        methods = ["get", "post", "put", "patch", "delete"]
         for arg in self.extra_args:
             for method in methods:
                 if arg.lower() == method:
