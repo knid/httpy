@@ -119,7 +119,7 @@ $ httpy https://jsonplaceholder.typicode.com/posts/{i} --exec i:++:6 -B
 Pass a value to the Header and just show status:
 
 ```bash
-$ httpy httpbin.org/get Authorization:{i} --exec i:token1, token2, token3 -S
+$ httpy httpbin.org/get Authorization:{i} --exec i:token1,token2,token3 -S
 ```
 
 ## Operation List
