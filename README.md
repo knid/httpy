@@ -1,12 +1,18 @@
-<br/>
+
+<br>
 <a href="" target="blank_">
+<center>
     <img height="100" alt="httpy" src="https://raw.githubusercontent.com/SinanKanidagli/httpy/main/docs/httpy-logo.svg" />
+    </center>
 </a>
-<br/>
 
-# httpy: Modern, user-friendly, programmable command-line HTTP client for the API
+<center>
+<h1>
+Modern, user-friendly, programmable and filterable command-line HTTP client for the API
+</h1>
+</center>
 
-httpy is a command line HTTP client.
+HTTPy is a command line HTTP client.
 Its purpose is to make duplicate web requests on a single line.
 httpy is designed for testing, debugging, and generally interacting with APIs and HTTP servers.
 The `httpy` command allows creating and sending arbitrary HTTP requests.
@@ -144,3 +150,4 @@ $ httpy httpbin.org/get Authorization:{i} --exec i:token1,token2,token3 -S
 Have a look through existing [Issues](https://github.com/SinanKanidagli/httpy/issues) and [Pull Requests](https://github.com/SinanKanidagli/httpy/pulls) that you could help with. If you'd like to request a feature or report a bug, please [create a GitHub Issue](https://github.com/SinanKanidagli/httpy/issues) using one of the templates provided.
 
 Sinan Kanidağlı © 2022
+
