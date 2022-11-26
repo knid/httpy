@@ -14,7 +14,6 @@ def main() -> ExitStatus:
     args = ArgumentParser()
     req = Request.from_args(args)  # Create request object from arguments
 
-
     if os.name == "nt":
         __import__("colorama").init()  # init colorama
     if not args.command:

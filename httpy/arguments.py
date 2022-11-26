@@ -32,7 +32,7 @@ class ArgumentParser(argparse.ArgumentParser):
         self.add_argument(
             "-S", "--status", action="store_true", help="show response status only"
         )
-        self.add_argument("-x", "--exec", metavar="CMD", help="execute httpcli command")
+        self.add_argument("-X", "--exec", metavar="CMD", help="execute httpcli command")
         self.add_argument(
             "-V",
             "--verbose",
