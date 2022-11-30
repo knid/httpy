@@ -9,11 +9,10 @@
 
  <div align="center">
  
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e2534e38d4a14534bb358a108441020e)](https://www.codacy.com/gh/SinanKanidagli/httpy/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=SinanKanidagli/httpy&amp;utm_campaign=Badge_Grade)
-[![Latest version](https://img.shields.io/pypi/v/httpy-cli.svg?style=flat&label=Latest&color=%234B78E6&logo=&logoColor=white)](https://pypi.python.org/pypi/httpy-cli)
-[![Twitter](https://img.shields.io/twitter/follow/KanidagliV?style=flat&color=%234B78E6&logoColor=%234B78E6)](https://twitter.com/KanidagliV)
-[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/e2534e38d4a14534bb358a108441020e)](https://www.codacy.com/gh/SinanKanidagli/httpy/dashboard?utm_source=github.com&utm_medium=referral&utm_content=SinanKanidagli/httpy&utm_campaign=Badge_Coverage)
-[![PyPI version](https://badge.fury.io/py/httpy-cli.svg)](https://badge.fury.io/py/httpy-cli)
+<a href="https://www.codacy.com/gh/SinanKanidagli/httpy/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=SinanKanidagli/httpy&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/e2534e38d4a14534bb358a108441020e"/></a>
+<a href="[https://twitter.com/KanidagliV](https://pypi.python.org/pypi/httpy-cli)"><img src="https://img.shields.io/pypi/v/httpy-cli.svg?style=flat&label=Latest&color=%234B78E6&logo=&logoColor=white" /></a>
+<a href="https://twitter.com/KanidagliV"><img src="https://img.shields.io/twitter/follow/KanidagliV?style=flat&color=%234B78E6&logoColor=%234B78E6" /></a>
+<a href="https://www.codacy.com/gh/SinanKanidagli/httpy/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=SinanKanidagli/httpy&amp;utm_campaign=Badge_Coverage"><img src="https://app.codacy.com/project/badge/Coverage/e2534e38d4a14534bb358a108441020e"/></a>
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/knid)
 
