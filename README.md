@@ -14,7 +14,7 @@
 <a href="https://twitter.com/KanidagliV"><img src="https://img.shields.io/twitter/follow/KanidagliV?style=flat&color=%234B78E6&logoColor=%234B78E6" /></a>
 <a href="https://www.codacy.com/gh/SinanKanidagli/httpy/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=SinanKanidagli/httpy&amp;utm_campaign=Badge_Coverage"><img src="https://app.codacy.com/project/badge/Coverage/e2534e38d4a14534bb358a108441020e"/></a>
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/knid)
+<a href="https://www.buymeacoffee.com/knid"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"/></a>
 
 </div>
 
