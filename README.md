@@ -10,8 +10,8 @@
  <div align="center">
  
 <a href="https://www.codacy.com/gh/SinanKanidagli/httpy/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=SinanKanidagli/httpy&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/e2534e38d4a14534bb358a108441020e"/></a>
-<a href="[https://twitter.com/KanidagliV](https://pypi.python.org/pypi/httpy-cli)"><img src="https://img.shields.io/pypi/v/httpy-cli.svg?style=flat&label=Latest&color=%234B78E6&logo=&logoColor=white" /></a>
-<a href="https://twitter.com/KanidagliV"><img src="https://img.shields.io/twitter/follow/KanidagliV?style=flat&color=%234B78E6&logoColor=%234B78E6" /></a>
+<a href="[https://twitter.com/devknid](https://pypi.python.org/pypi/httpy-cli)"><img src="https://img.shields.io/pypi/v/httpy-cli.svg?style=flat&label=Latest&color=%234B78E6&logo=&logoColor=white" /></a>
+<a href="https://twitter.com/devknid"><img src="https://img.shields.io/twitter/follow/devknid?style=flat&color=%234B78E6&logoColor=%234B78E6" /></a>
 <a href="https://www.codacy.com/gh/SinanKanidagli/httpy/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=SinanKanidagli/httpy&amp;utm_campaign=Badge_Coverage"><img src="https://app.codacy.com/project/badge/Coverage/e2534e38d4a14534bb358a108441020e"/></a>
 <a href="https://pypi.python.org/pypi/ansicolortags/"><img src="https://img.shields.io/pypi/l/ansicolortags.svg" /></a>
 
