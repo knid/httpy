@@ -1,7 +1,6 @@
 
 <h2 align="center">
-    
-    <img height="100" alt="HTTPie" src="https://raw.githubusercontent.com/SinanKanidagli/httpy/main/docs/httpy-logo.svg" />
+<img height="100" alt="HTTPie" src="https://raw.githubusercontent.com/SinanKanidagli/httpy/main/docs/httpy-logo.svg" />
     <br>
     Modern, user-friendly, programmable and filterable command-line HTTP client for the API
 </h2>
