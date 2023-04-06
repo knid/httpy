@@ -30,3 +30,5 @@ def print_body(res: requests.Response):
         print_json(res)
     elif content_type.startswith(html_content_type):
         print_html(res)
+    else:
+        print(res.content.decode())
