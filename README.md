@@ -109,7 +109,7 @@ This will be return all response for these ids.
 Variable name must be same with inside of `{}`.
 We can use `{i}` in everything. Headers, query values etc.
 
-We can simply more command:
+We can more simply the command:
 
 ```bash
 $ httpy 'api.service.com/users/{i}' -X i:++:4
