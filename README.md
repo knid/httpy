@@ -19,7 +19,8 @@
 
 </div>
 
-HTTPy is a command line HTTP client.
+
+[HTTPy](https://github.com/knid/httpy) is a command line HTTP client.
 Its purpose is to make duplicate web requests on a single line.
 httpy is designed for testing, debugging, and generally interacting with APIs and HTTP servers.
 The `httpy` command allows creating and sending arbitrary HTTP requests.
@@ -28,18 +29,8 @@ Under favour of its programmable structure, it can perform many tasks at the sam
 For example, you can pull data for user IDs 0, 1, and 2 at the same time
 
 
-
 <img src="https://raw.githubusercontent.com/SinanKanidagli/httpy/main/docs/httpy-animation.gif" alt="httpy in action" width="100%"/>
 
-
-## Getting started
-
-Installation instructions
-
-
-```bash
-pip install httpy-cli
-```
 
 ## Features
 
@@ -50,7 +41,7 @@ pip install httpy-cli
 * Programmable requests
     - Multiple requests one line
 
-    - Value incremented each time
+    - Value increment each time
 
     - Random number per request
 
@@ -64,85 +55,126 @@ pip install httpy-cli
 
 * Custom headers
 
-## Structures
+## Installation
 
 ```bash
-$ httpy <URL> <METHOD> <HEADERS,QUERIES,DATA> --exec <COMMAND>
+$ pip3 install httpy-cli
 ```
 
-Custom method, headers, queries and JSON data:
+## Usage
+
+Simple get request:
 
 ```bash
-$ httpy httpbin.org/put PUT HeaderName:HeaderValue data=value query==value
+httpy httpbin.org/get
 ```
 
-Command
+Synopsis:
 
 ```bash
-$ httpy httpbin.org/get --exec <KEY>:<OPERATION>:<MAX_RUN>
+$ httpy <URL> <METHOD> <HEADERS,QUERIES,DATA> --exec <COMMAND> <ARGS>
 ```
 
-## Examples
+We will use `api.service.com` as a API server for simulating requests.
 
-Basic Request:
+Let's start with a simple request:
 
 ```bash
-$ httpy httpbin.org/get
+$ httpy api.service.com/users
 ```
 
-Usage custom method, headers, queries and JSON data:
+This command will return all user objects. But if we want get only users with id 0, 1, 2, 3. Normally we have to do like this:
 
 ```bash
-$ httpy httpbin.org/put PUT HeaderName:HeaderValue data=value query==value
+$ httpy api.service.com/users/0
+  ...
+$ httpy api.service.com/users/1
+  ...
+$ httpy api.service.com/users/2
+  ...
+$ httpy api.service.com/users/3
+  ...
 ```
 
-Custom HTTP method, HTTP headers and JSON data:
+But we can do this in one line with `httpy`:
 
 ```bash
-$ httpy httpbin.org/post POST X-API-Token:123 name=John
+$ httpy 'api.service.com/users/{i}' -X i:0,1,2
 ```
 
-Run 3 times:
+This will be return all response for these ids.
+
+`i` is arg name and it can be everything. And `-X` argument execute commands.
+
+Variable name must be same with inside of `{}`.
+We can use `{i}` in everything. Headers, query values etc.
+
+We can simply more command:
 
 ```bash
-$ httpy httpbin.org/get --exec i:++:3
+$ httpy 'api.service.com/users/{i}' -X i:++:4
 ```
 
-Pass a value to URL:
+This command increment the variable each time.
+
+The command syntax must be like this:
 
 ```bash
-$ httpy 'httpbin.org/get?value={i}' --exec i:VALUE
+<VALUE>:<OPERATION>:<MAX_RUN>
 ```
 
-Pass a value to the URL by running it 2 times:
-
-```bash
-$ httpy 'httpbin.org/get?value={i}' --exec i:VALUE:2
-```
-
-Get 0, 1, 2, 3, 4, 5 post one line and just show body:
-
-```bash
-$ httpy https://jsonplaceholder.typicode.com/posts/{i} --exec i:++:6 -B
-```
-
-Pass a value to the Header and just show status:
-
-```bash
-$ httpy httpbin.org/get Authorization:{i} --exec i:token1,token2,token3 -S
-```
-
-## Operation List
+We can use different operation:
 
 |Operation            |Description
 |---------------------|-------------------------------
 | `++` | Increment
-| `--` | Deincrement
+| `--` | Decrement
 | `rand(0,10)` | Random number from 1 to 10
-| `read(path/to/file)` | Read from file
-| `item1, item2` | List
+| `read(path/to/file)` | Read lines from file
+| `item1,item2` | List
 | `item` | Text
 
+For exaple we can get random number and use in request:
+
+```bash
+$ httpy 'api.service.com/users/{i}' -X 'i:rand(1,10)'
+```
+
+or we can use file as a token list for deleting users:
+
+```bash
+$ httpy 'api.service.com/users/me' DELETE 'Authorization:{i}' -X 'i:read(tokens.txt)'
+```
+
+or we can fill db with random 100 data in one line (we will see only status with `-S`):
+
+```bash
+$ httpy 'api.service.com/books' POST 'id={i}' 'title=Book {i}' -X 'i:rand(1,3000):100' -S
+```
+
+
+We can get only body with `-B` argument.
+
+
+```bash
+$ httpy 'api.service.com/users/{i}' -X i:3,4,5 -B
+```
+
+We can use other arguments for choosing what will see:
+
+|Argument             |Description
+|---------------------|-------------------------------
+| `-B`, `--body`      | Only show body
+| `-H`, `--header`    | Only show headers
+| `-S`, `--status`    | Only show status
+
+We can combine args. For example we can print only body and status with `-B` and `-S`:
+
+```bash
+$ httpy 'api.service.com/users/{i}' -X i:3,4,5 -B -S
+```
+
+That's it. You can check [project page](https://github.com/knid/httpy) for all "operations" and all usages.
 ## Community & support
 
 * Tweet httpy at [@KanidagliV](https://twitter.com/KanidagliV) on Twitter.
